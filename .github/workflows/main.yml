@@ -119,7 +119,10 @@ jobs:
         name: helm-package
         path: ./*.tgz
 
-  helm-deployment:
+  helm-cd:
+    needs:
+      - docker-ci
+      - helm-ci
     runs-on: ubuntu-latest
     steps:
       - name: Install and setup Helm
