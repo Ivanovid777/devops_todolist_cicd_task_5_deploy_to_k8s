@@ -135,7 +135,7 @@ jobs:
         run: kind create cluster --config ./cluster.yml
 
       - name: Helm install dry-run
-        run: helm install --dry-run --hide-secret /
+        run: helm install --dry-run=client --hide-secret /
           todoapp-release
           ./helm-charts/todoapp
 
