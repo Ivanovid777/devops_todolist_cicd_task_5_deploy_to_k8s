@@ -1,4 +1,4 @@
-name: python-deployment
+name: app-ci-cd
 
 run-name: ${{ github.actor }} - ${{ github.ref_name}} -${{ github.sha }}
 
@@ -135,12 +135,14 @@ jobs:
         run: kind create cluster --config ./cluster.yml
 
       - name: Helm install dry-run
-        run: helm install --dry-run=client --hide-secret /
+        run: |
+          helm install --dry-run=client --hide-secret /
           todoapp-release
           ./helm-charts/todoapp
 
       - name: Helm upgrade
-        run: helm upgrade --install --atomic --timeout 1m --debug /
+        run: |
+          helm upgrade --install --atomic --timeout 1m --debug /
           todoapp-release /
           ./helm-charts/todoapp
 
