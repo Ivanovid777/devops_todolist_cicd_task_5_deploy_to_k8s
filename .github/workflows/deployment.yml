@@ -9,9 +9,6 @@ run-name: Deployment to ${{ inputs.environment }}
 
 jobs:
   helm-cd:
-    needs:
-      - docker-ci
-      - helm-ci
     runs-on: ubuntu-latest
     steps:
       - name: Install and setup Helm
