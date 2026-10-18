@@ -120,11 +120,23 @@ jobs:
         path: ./*.tgz
 
   deployment-to-development:
+    name: Deployment to development
     needs:
       - docker-ci
       - helm-ci
     uses: ./.github/workflows/deployment.yml
     with:
       environment: "development"
+      tag: ${{ github.sha }}
+    secrets: inherit
+
+  deployment-to-staging:
+    name: Deployment to staging
+    needs:
+      - docker-ci
+      - helm-ci
+    uses: ./.github/workflows/deployment.yml
+    with:
+      environment: "staging"
       tag: ${{ github.sha }}
     secrets: inherit
