@@ -1,8 +1,8 @@
 mysql:
   secrets:
-    MYSQL_ROOT_PASSWORD: "***"
-    MYSQL_USER: "***"
-    MYSQL_PASSWORD: "***"
+    MYSQL_ROOT_PASSWORD: "xxx"
+    MYSQL_USER: "xxx"
+    MYSQL_PASSWORD: "xxx"
 
 todoapp:
   namespace: todoapp
@@ -21,9 +21,9 @@ todoapp:
   secrets:
     SECRET_KEY: zdfsadfsadfsfs
     DB_NAME: app_db
-    DB_USER: "***"
-    DB_PASSWORD: "***"
-    DB_HOST: "***"
+    DB_USER: "xxx"
+    DB_PASSWORD: "xxx"
+    DB_HOST: "xxx"
 
   hpa:
     minReplicas: 2
