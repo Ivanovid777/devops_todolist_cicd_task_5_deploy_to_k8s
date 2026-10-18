@@ -40,7 +40,8 @@ jobs:
           --set todoapp.secrets.DB_PASSWORD="${{ secrets.DB_PASSWORD }}" \
           --set todoapp.secrets.DB_USER="${{ secrets.DB_USER }}" \
           --set todoapp.secrets.DB_HOST="${{ secrets.DB_HOST }}" \
-          --set todoapp.image.repository="${{ vars.DOCKERHUB_USERNAME }}"/todoapp:${{ inputs.tag }} \
+          --set todoapp.image.repository="${{ vars.DOCKERHUB_USERNAME }}/todoapp" \
+          --set todoapp.image.tag="${{ inputs.tag }}"
 
       - name: Check deployment
         run: kubectl get ns
