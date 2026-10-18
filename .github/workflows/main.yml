@@ -126,3 +126,5 @@ jobs:
     uses: ./.github/workflows/deployment.yml
     with:
       environment: "development"
+      tag: ${{ github.sha }}
+    secrets: inherit

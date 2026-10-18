@@ -5,10 +5,14 @@ on:
         environment:
           type: string
           required: true
+        tag:
+          type: string
+          required: true
 run-name: Deployment to ${{ inputs.environment }}
 
 jobs:
   helm-cd:
+    environment: ${{ inputs.environment }}
     runs-on: ubuntu-latest
     steps:
       - name: Install and setup Helm
@@ -29,13 +33,14 @@ jobs:
       - name: Helm upgrade
         run: |
           helm upgrade --install --atomic --timeout 5m --debug \
-          todoapp-release ./helm-charts/todoapp \
+          todoapp-${{ inputs.environment }} ./helm-charts/todoapp \
           --set mysql.configs.MYSQL_ROOT_PASSWORD="${{ secrets.MYSQL_ROOT_PASSWORD }}" \
           --set mysql.configs.MYSQL_USER="${{ secrets.MYSQL_USER }}" \
           --set mysql.configs.MYSQL_PASSWORD="${{ secrets.MYSQL_PASSWORD }}" \
           --set todoapp.secrets.DB_PASSWORD="${{ secrets.DB_PASSWORD }}" \
           --set todoapp.secrets.DB_USER="${{ secrets.DB_USER }}" \
           --set todoapp.secrets.DB_HOST="${{ secrets.DB_HOST }}" \
+          --set todoapp.image.repository="${{ vars.DOCKERHUB_USERNAME }}"/todoapp:${{ inputs.tag }} \
 
       - name: Check deployment
         run: kubectl get ns
