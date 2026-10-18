@@ -13,7 +13,7 @@ env:
   DockerImageName: kube2py
 
 jobs:
-  python-ci:
+  code-ci:
     runs-on: ubuntu-latest
     defaults:
       run:
